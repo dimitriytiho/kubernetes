@@ -15,7 +15,8 @@ spec:
     spec:
       volumes:
         - name: test-storage
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: pvc-test
       initContainers:
         - name: git-clone
           image: alpine/git
