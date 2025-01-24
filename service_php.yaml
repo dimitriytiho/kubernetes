@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-test
+  name: src-test-php
   namespace: dev
 spec:
 ports:
