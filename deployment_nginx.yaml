@@ -7,14 +7,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev-nginx-php
+      app: test-nginx-php
   template:
     metadata:
       labels:
-        app: dev-nginx-php
+        app: test-nginx-php
     spec:
       volumes:
-        - name: test-dev-storage
+        - name: test-storage
           emptyDir: {}
         - name: config-nginx
           configMap:
@@ -23,10 +23,10 @@ spec:
         - name: nginx
           image: nginx:1.26.2
           ports:
-            - name: dev-nginx-port
+            - name: test-nginx-port
               containerPort: 80
           volumeMounts:
-            - name: test-dev-storage
+            - name: test-storage
               mountPath: /var/www/html
             - name: config-nginx
               mountPath: /etc/nginx/conf.d/

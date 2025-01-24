@@ -7,29 +7,29 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev-nginx-php
+      app: test-nginx-php
   template:
     metadata:
       labels:
-        app: dev-nginx-php
+        app: test-nginx-php
     spec:
       volumes:
-        - name: test-dev-storage
+        - name: test-storage
           emptyDir: {}
       initContainers:
         - name: git-clone
           image: alpine/git
           command: [ "git", "clone", "https://github.com/dimitriytiho/kuber.git", "/var/www/html" ]
           volumeMounts:
-            - name: test-dev-storage
+            - name: test-storage
               mountPath: /var/www/html
       containers:
         - name: php
           image: php:8.4-fpm
           command: [ "php-fpm", "-F" ]
           ports:
-            - name: dev-php-port
+            - name: test-php-port
               containerPort: 9000
           volumeMounts:
-            - name: test-dev-storage
+            - name: test-storage
               mountPath: /var/www/html
