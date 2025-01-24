@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-dev-nginx
+  name: deploy-test-nginx
   namespace: dev
 spec:
   replicas: 1
