@@ -28,7 +28,8 @@ spec:
           image: php:8.4-fpm
           command: [ "php-fpm", "-F" ]
           ports:
-            - containerPort: 9000
+            - name: dev-php-port
+              containerPort: 9000
           volumeMounts:
             - name: test-dev-storage
               mountPath: /var/www/html
