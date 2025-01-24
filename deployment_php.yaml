@@ -19,7 +19,13 @@ spec:
       initContainers:
         - name: git-clone
           image: alpine/git
-          command: [ "git", "clone", "https://github.com/dimitriytiho/kuber.git", "/var/www/html" ]
+          command:
+            - sh
+            - -c
+            - |
+              rm -rf /var/www/html/*  # Очистка перед клонированием
+              git clone https://github.com/dimitriytiho/kuber.git /var/www/html &&
+              chown -R 82:82 /var/www/html  # Права для пользователя в PHP-FPM
           volumeMounts:
             - name: test-storage
               mountPath: /var/www/html

@@ -4,6 +4,8 @@ metadata:
   name: src-test-nginx
   namespace: dev
 spec:
+  selector:
+    app: src-test-nginx
   ports:
     - name: test-nginx
       port: 80
@@ -13,6 +15,4 @@ spec:
 #      port: 9216
 #      targetPort: 19216
 #      protocol: TCP
-  selector:
-    app: test-nginx-php
 #  type: ClusterIP

@@ -4,10 +4,10 @@ metadata:
   name: src-test-php
   namespace: dev
 spec:
+  selector:
+    app: src-test-php
   ports:
     - name: test-php
       port: 9000
       targetPort: test-php-port
       protocol: TCP
-selector:
-  app: test-nginx-php
