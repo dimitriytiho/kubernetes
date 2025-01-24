@@ -1,5 +1,3 @@
-## Имя проекта test
-
 ## Команды:
 ```
 kubectl create ns dev
