@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-dev-nginx
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-nginx-php
+  template:
+    metadata:
+      labels:
+        app: dev-nginx-php
+    spec:
+      volumes:
+        - name: test-dev-storage
+          emptyDir: {}
+        - name: config-nginx
+          configMap:
+            name: config-nginx
+      containers:
+        - name: nginx
+          image: nginx:1.26.2
+          ports:
+            - name: dev-nginx-port
+              containerPort: 80
+          volumeMounts:
+            - name: test-dev-storage
+              mountPath: /var/www/html
+            - name: config-nginx
+              mountPath: /etc/nginx/conf.d/
+              subPath: default.conf
+          env:
+            - name: PHP_FPM_UPSTREAM
+              value: "php:9000"

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-dev-php
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-nginx-php
+  template:
+    metadata:
+      labels:
+        app: dev-nginx-php
+    spec:
+      volumes:
+        - name: test-dev-storage
+          emptyDir: {}
+      initContainers:
+        - name: git-clone
+          image: alpine/git
+          command: [ "git", "clone", "https://github.com/dimitriytiho/kuber.git", "/var/www/html" ]
+          volumeMounts:
+            - name: test-dev-storage
+              mountPath: /var/www/html
+      containers:
+        - name: php
+          image: php:8.4-fpm
+          command: [ "php-fpm", "-F" ]
+          ports:
+            - containerPort: 9000
+          volumeMounts:
+            - name: test-dev-storage
+              mountPath: /var/www/html
