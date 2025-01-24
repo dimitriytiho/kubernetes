@@ -16,9 +16,9 @@ spec:
       volumes:
         - name: test-storage
           emptyDir: {}
-        - name: config-nginx
+        - name: config-test-nginx
           configMap:
-            name: config-nginx
+            name: config-test-nginx
       containers:
         - name: nginx
           image: nginx:1.26.2
@@ -28,7 +28,7 @@ spec:
           volumeMounts:
             - name: test-storage
               mountPath: /var/www/html
-            - name: config-nginx
+            - name: config-test-nginx
               mountPath: /etc/nginx/conf.d/
               subPath: default.conf
           env:
