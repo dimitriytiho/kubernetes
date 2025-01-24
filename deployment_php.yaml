@@ -32,7 +32,6 @@ spec:
       containers:
         - name: php
           image: php:8.2-fpm
-          command: [ "php-fpm", "-F" ]
           ports:
             - name: test-php-port
               containerPort: 9000
