@@ -5,7 +5,7 @@ metadata:
   namespace: dev
 spec:
   selector:
-    app: src-test-php
+    app: deploy-test-php
   ports:
     - name: test-php
       port: 9000

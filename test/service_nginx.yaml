@@ -5,14 +5,14 @@ metadata:
   namespace: dev
 spec:
   selector:
-    app: src-test-nginx
+    app: deploy-test-nginx
   ports:
     - name: test-nginx
       port: 80
       targetPort: test-nginx-port
       protocol: TCP
-#    - name: db
-#      port: 9216
-#      targetPort: 19216
-#      protocol: TCP
-#  type: ClusterIP
+    #- name: db
+      #port: 9216
+      #targetPort: 19216
+      #protocol: TCP
+  #type: ClusterIP

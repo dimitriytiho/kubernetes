@@ -7,11 +7,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-nginx-php
+      app: deploy-test-php
   template:
     metadata:
       labels:
-        app: test-nginx-php
+        app: deploy-test-php
     spec:
       volumes:
         - name: test-storage
