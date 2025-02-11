@@ -26,13 +26,13 @@ spec:
             - |
               rm -rf /var/www/html/*  # Очистка перед клонированием
               git clone https://github.com/dimitriytiho/kuber.git /var/www/html &&
-              chown -R 82:82 /var/www/html  # Права для пользователя в PHP-FPM
+              chown -R 82:82 /var/www/html # Права для пользователя в PHP-FPM
           volumeMounts:
             - name: test-storage
               mountPath: /var/www/html
       containers:
         - name: php
-          image: php:8.2-fpm
+          image: adaptdk/php:8.2-fpm-composer-with-redis
           ports:
             - name: test-php-port
               containerPort: 9000
