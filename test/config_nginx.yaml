@@ -26,7 +26,7 @@ data:
         error_page 404 /index.php;
 
         location ~ \.php$ {
-            fastcgi_pass src-test-php:9000; # Обращение к сервису php
+            fastcgi_pass src-test-php:8000; # Обращение к сервису php
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
             include fastcgi_params;
             fastcgi_hide_header X-Powered-By;

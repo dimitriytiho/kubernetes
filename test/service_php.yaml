@@ -8,6 +8,6 @@ spec:
     app: deploy-test-php
   ports:
     - name: test-php
-      port: 9000
+      port: 8000
       targetPort: test-php-port
       protocol: TCP

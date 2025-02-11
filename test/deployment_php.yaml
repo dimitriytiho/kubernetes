@@ -35,7 +35,7 @@ spec:
           image: adaptdk/php:8.2-fpm-composer-with-redis
           ports:
             - name: test-php-port
-              containerPort: 9000
+              containerPort: 8000
           volumeMounts:
             - name: test-storage
               mountPath: /var/www/html
