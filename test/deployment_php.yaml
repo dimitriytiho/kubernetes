@@ -24,9 +24,13 @@ spec:
             - sh
             - -c
             - |
-              rm -rf /var/www/html/*  # Очистка перед клонированием
+              rm -rf /var/www/html/* # Очистка перед клонированием
               git clone https://github.com/dimitriytiho/kuber.git /var/www/html &&
-              chown -R 82:82 /var/www/html # Права для пользователя в PHP-FPM
+              #composer update --optimize-autoloader --no-interaction --working-dir=/var/www/html && # Установка composer зависимостей
+              # Права для Laravel
+              chmod -R 775 /var/www/html/storage && \
+              chmod -R 775 /var/www/html/bootstrap/cache && \
+              chown -R 33:33 /var/www/html
           volumeMounts:
             - name: test-storage
               mountPath: /var/www/html
