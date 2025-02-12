@@ -32,7 +32,7 @@ spec:
               mountPath: /var/www/html
       containers:
         - name: php
-          image: adaptdk/php:8.2-fpm-composer-with-redis
+          image: jkaninda/laravel-php-fpm:8.2
           ports:
             - name: test-php-port
               containerPort: 8000
