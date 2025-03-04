@@ -16,9 +16,6 @@ spec:
         app: php-app
     spec:
       volumes:
-        #- name: storage-php
-        #  persistentVolumeClaim:
-        #    claimName: pvc
         - name: php-storage
           configMap:
             name: config-php

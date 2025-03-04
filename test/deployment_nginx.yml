@@ -14,9 +14,6 @@ spec:
         app: nginx
     spec:
       volumes:
-        #- name: storage
-          #persistentVolumeClaim:
-          #  claimName: pvc
         - name: nginx-storage
           configMap:
             name: nginx-config
