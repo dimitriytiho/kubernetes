@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-php
+  namespace: test
+  labels:
+    app: php-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-app
+  template:
+    metadata:
+      labels:
+        app: php-app
+    spec:
+      volumes:
+        #- name: storage-php
+        #  persistentVolumeClaim:
+        #    claimName: pvc
+        - name: php-storage
+          configMap:
+            name: config-php
+      containers:
+        - name: php
+          image: php:8.2-fpm-alpine
+          command: [ "php", "-S", "0.0.0.0:8000", "-t", "/var/www/html" ]
+          ports:
+            - name: php-port
+              containerPort: 8000
+          volumeMounts:
+            - name: php-storage
+              mountPath: /var/www/html
