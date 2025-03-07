@@ -1,22 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-test-php
-  namespace: dev
+  name: deploy-php
+  namespace: test
+  labels:
+    app: php-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: deploy-test-php
+      app: php-app
   template:
     metadata:
       labels:
-        app: deploy-test-php
+        app: php-app
     spec:
       volumes:
-        - name: test-storage
+        - name: php-storage
           persistentVolumeClaim:
-            claimName: pvc-test
+            claimName: pvc
       initContainers:
         - name: git-clone
           image: alpine/git
@@ -24,22 +26,20 @@ spec:
             - sh
             - -c
             - |
-              rm -rf /var/www/html/* # Очистка перед клонированием
-              git clone https://github.com/dimitriytiho/kuber.git /var/www/html &&
-              #composer update --optimize-autoloader --no-interaction --working-dir=/var/www/html && # Установка composer зависимостей
-              # Права для Laravel
+              rm -rf /var/www/html/*
+              git clone https://github.com/dimitriytiho/kuber.git /var/www/html && \
               chmod -R 775 /var/www/html/storage && \
               chmod -R 775 /var/www/html/bootstrap/cache && \
               chown -R 33:33 /var/www/html
           volumeMounts:
-            - name: test-storage
+            - name: php-storage
               mountPath: /var/www/html
       containers:
         - name: php
           image: jkaninda/laravel-php-fpm:8.2
           ports:
-            - name: test-php-port
+            - name: php-port
               containerPort: 8000
           volumeMounts:
-            - name: test-storage
+            - name: php-storage
               mountPath: /var/www/html
