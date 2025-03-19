@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-php
+  name: php
   namespace: test
   labels:
-    app: php-app
+    app: php
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: php-app
+      app: php
   template:
     metadata:
       labels:
-        app: php-app
+        app: php
     spec:
       volumes:
         - name: php-storage

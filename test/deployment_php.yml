@@ -22,6 +22,7 @@ spec:
       containers:
         - name: php
           image: php:8.2-fpm-alpine
+          #imagePullPolicy: Never # Always
           command: [ "php", "-S", "0.0.0.0:8000", "-t", "/var/www/html" ]
           ports:
             - name: php-port
