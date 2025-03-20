@@ -16,7 +16,7 @@ spec:
         app: php
     spec:
       volumes:
-        - name: php-storage
+        - name: storage-php
           persistentVolumeClaim:
             claimName: pvc
       initContainers:
@@ -32,7 +32,7 @@ spec:
               chmod -R 775 /var/www/html/bootstrap/cache && \
               chown -R 33:33 /var/www/html
           volumeMounts:
-            - name: php-storage
+            - name: storage-php
               mountPath: /var/www/html
       containers:
         - name: php
@@ -41,5 +41,5 @@ spec:
             - name: php-port
               containerPort: 8000
           volumeMounts:
-            - name: php-storage
+            - name: storage-php
               mountPath: /var/www/html

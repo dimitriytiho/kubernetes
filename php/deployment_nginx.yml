@@ -14,10 +14,10 @@ spec:
         app: nginx
     spec:
       volumes:
-        - name: php-storage
+        - name: storage-php
           persistentVolumeClaim:
             claimName: pvc
-        - name: nginx-storage
+        - name: storage-nginx
           configMap:
             name: nginx
       initContainers:
@@ -27,7 +27,7 @@ spec:
           securityContext:
             runAsUser: 0 # Запускаем от имени пользователя root для изменения владельца
           volumeMounts:
-            - name: php-storage
+            - name: storage-php
               mountPath: /var/www/html
       containers:
         - name: nginx
@@ -36,8 +36,8 @@ spec:
             - name: nginx-port
               containerPort: 80
           volumeMounts:
-            - name: php-storage
+            - name: storage-php
               mountPath: /var/www/html
-            - name: nginx-storage
+            - name: storage-nginx
               mountPath: /etc/nginx/conf.d/default.conf
               subPath: default.conf
