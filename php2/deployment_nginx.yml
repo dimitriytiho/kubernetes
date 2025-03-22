@@ -31,4 +31,4 @@ spec:
               mountPath: /etc/nginx/conf.d/default.conf
               subPath: nginx.conf
             - name: storage-php
-              mountPath: /var/www/html
+              mountPath: /var/www/html/public

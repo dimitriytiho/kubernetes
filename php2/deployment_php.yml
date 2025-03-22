@@ -28,4 +28,4 @@ spec:
               containerPort: 9000
           volumeMounts:
             - name: storage-php
-              mountPath: /var/www/html
+              mountPath: /var/www/html/public
