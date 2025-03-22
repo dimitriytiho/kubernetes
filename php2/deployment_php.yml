@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+  namespace: test
+  labels:
+    app: php
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+    spec:
+      enableServiceLinks: false
+      volumes:
+        - name: storage-php
+          configMap:
+            name: config-php
+      containers:
+        - name: php
+          image: php:8.2-fpm-alpine
+          ports:
+            - name: php-port
+              containerPort: 9000
+          volumeMounts:
+            - name: storage-php
+              mountPath: /var/www/html

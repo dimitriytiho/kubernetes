@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-php
+  namespace: test
+data:
+  index.php: |
+    <?php
+        echo "<h1>Kubernetes hello!</h1>";
+    ?>
